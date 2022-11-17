@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Age Calculator</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!--<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>-->
+    <script>    
+        function formatDate(date){
+            
+            let format=""
+
+            if(date[2] == "/" && date[5] == "/"){
+                format = "BR"
+            }
+            else if(date[4] == "-" && date[7] == "-"){
+                format = "ISO"
+            }
+            else if(date == ""){
+                format = "No date entered"
+            }
+            else{
+                format = "Incorrect date"
+            }
+            return format
+        }
+        function calculator(birthDateFormat, currentDateFormat, birthDate, currentDate){     
+            
+            let age = 0
+            
+            if(birthDateFormat == "BR"){
+                splitBirthDate = birthDate.split("/")
+                anoNascimento = splitBirthDate[2]
+                diaNascimento = splitBirthDate[0]
+            }
+            if(birthDateFormat == "ISO"){
+                splitBirthDate = birthDate.split("-")
+                anoNascimento = splitBirthDate[0]
+                diaNascimento = splitBirthDate[2]
+            }
+            let mesNascimento = splitBirthDate[1]
+
+            if(currentDateFormat == "BR"){
+                splitCurrentDate = currentDate.split("/")
+                anoAtual = splitCurrentDate[2]
+                diaAtual = splitCurrentDate[0]
+            }
+            if(currentDateFormat == "ISO"){
+                splitCurrentDate = currentDate.split("-")
+                anoAtual = splitCurrentDate[0]
+                diaAtual = splitCurrentDate[2]
+            } 
+            let mesAtual = splitCurrentDate[1]
+
+            age = anoAtual - anoNascimento
+            
+            if(mesAtual<mesNascimento){
+                age-=1
+            }
+            if(mesAtual==mesNascimento && diaAtual<diaNascimento){
+                age-=1
+            }
+            return age
+        }
+        function main(){
+            let birthDate = document.getElementById("birthDate").value 
+            let currentDate = document.getElementById("currentDate").value
+            let age = calculator(formatDate(birthDate), formatDate(currentDate), birthDate, currentDate)
+            document.getElementById("age").innerHTML = age
+        }
+    </script>
+
+</head>
+<body>
+    <div style="width: 100vw; height: 100vh; background: silver; display: flex; justify-content: center; align-items: center; font-size: clamp(1em + 1vh, 1em, 1em);">
+        <div style="width: 50vw; height: 100vh; background: white; display: flex; flex-direction: column; justify-content:center; align-items: center;" >
+            <p style="margin-bottom: 0px;">Age Calculator</p>
+            <p style="padding-left: 20px; padding-right: 20px; font-size: 14px; text-align: center;">Type a birth date and the current date.</p>
+            <text id="msg1">Birth</text>
+            <input type="text"  title="birth"  id="birthDate"   style="width: 200px; height: clamp(1em + 1vh, 1em + 0.5vh, 1em); text-align: center; margin-bottom: 5px">               
+            <text id="msg2">Current</text>
+            <input type="text"  title="current"  id="currentDate" style="width: 200px; height: clamp(1em + 1vh, 1em + 0.5vh, 1em); text-align: center; margin-bottom: 5px;">              
+            <input type="button" value="Calculate" style="width: 208px; height: clamp(1em, 1.5em + 2.5vh, 2em + 0.5vh)" onclick="return main()">
+            <p id="age">No date entered</p>
+        </div>    
+    </div>     
+</body>
+</html>
+
+<!--if(splitCurrentDate[1] > splitBirthDate[1]){
+    document.getElementById("age").value = age
+}
+else if(splitCurrentDate[1] < splitBirthDate[1]){
+    age = age - 1
+    document.getElementById("age").value = age
+}
+else{
+    if(splitCurrentDate[0] > splitBirthDate[0]){
+        document.getElementById("age").value = age
+    }
+    else if (splitCurrentDate[0] < splitBirthDate[0]){
+        age = age - 1
+        document.getElementById("age").value = age
+    }
+    else{
+        document.getElementById("age").value = age
+        
+    }
+}-->

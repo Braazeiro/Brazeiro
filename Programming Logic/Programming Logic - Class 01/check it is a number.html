@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-eisnumberuiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <script>
+        //variable declaration
+        let isnumber=false
+        let n
+        let message="Enter a number"
+        
+        //receive a value as long as that value is not a number
+        while(!isnumber){
+            n=prompt(message)
+            //check it is a number
+            if((isNaN(n))){
+                isnumber=false
+            }else{               
+                if(n==""){
+                    isnumber=false
+                }else if(n==null){
+                    isnumber=false
+                }else{              
+                    isnumber=true
+                }
+            }
+            //change message
+            if(isnumber){
+                message="'"+n+"'"+" is a number"
+            }else if(n!=null && n!=""){
+                message="'"+n+"'"+" not is a number"
+            }else{
+                message="Enter a number"
+            }       
+        }
+        //display the message if the value is a number
+        alert(message)
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Guilherme</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+        <script src='main.js'></script>
+    </head>
+
+    <body>
+        <script>
+            let name = prompt("Enter student name")
+            let age =""
+            age = prompt("Enter student age")
+            /*Condições que a variável deve atender para ser número
+            -Deve retornar "true" na função "isNaN(variável)"
+            -Deve ter valor diferente de "" (vazio)*/
+            alert(age)
+            isnumber=false
+
+            if(!isNaN(age)){           
+                if(age!="" && age!=null){
+                    isnumber=true
+                }
+   
+            }else{
+                isnumber=false
+            }
+
+            alert(isnumber)
+
+            let weight = parseFloat(prompt("Enter student weight"))
+            let height = parseFloat(prompt("Enter student height"))
+
+            alert("The student name is " + name + ", is "+ age + " years old" + ", weights " + weight + ",\nand measures " + height + " m.")
+        </script>
+    </body>
+</html>

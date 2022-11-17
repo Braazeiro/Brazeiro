@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Formato BR e ISO</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!--<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>-->
+
+    <script>
+        let data = "";
+        let formatoData = "Nenhum data inserida" ; 
+        
+        function formatoDaData(){   
+   
+            data = document.getElementById("data").value;
+            
+                if(data[2]=="/" && data[5]=="/"){
+                    formatoData = "BR"
+                }else if(data[4]=="-" && data[7]=="-"){
+                    formatoData = "ISO"
+                }else if(data==""){
+                    formatoData = "Nenhuma data inserida"
+                }else{
+                    formatoData = "Data Incorreta"
+                }
+            document.getElementById("formato").value = formatoData
+            
+        }
+        
+        function alteraFormato(){ 
+            data = document.getElementById("data").value;
+     
+            
+            if(formatoData=="BR" && data!=""){
+                let dtSeparada = data.split("/")  
+                data=""          
+                for(var i = 2; i >= 0; i--){
+                       
+                data = data + dtSeparada[i];
+                if(i > 0){
+                    data = data + "-"
+                    }
+                }
+            }
+            if(formatoData=="ISO"&& data!="")
+            {
+                let dtSeparada = data.split("-")  
+                data=""          
+                for(var i = 2; i >= 0; i--){
+                        
+                data = data + dtSeparada[i];
+                if(i > 0){
+                    data = data + "/"
+                    }
+                }
+            }
+          
+            if(data[2]=="/" && data[5]=="/"){
+                formatoData = "BR"
+            }else if(data[4]=="-" && data[7]=="-"){
+                formatoData = "ISO"
+            }else if(data==""){
+                formatoData = "Nenhuma data inserida"
+            }else{
+                formatoData = "Data Incorreta"
+            }
+
+            document.getElementById("formato").value = formatoData 
+            document.getElementById("data").value = data  
+            document.getElementById("a").value = data    
+        }
+
+        function newDate(){
+            
+            var data = new Date().toLocaleDateString();
+            document.getElementById("data").value = data
+        }
+
+        /*function b(){
+            var data = new Date().toLocaleDateString();
+            document.getElementById("a").value = "Inserir data atual: " + data 
+        }*/
+    
+    </script>
+
+</head>
+<body style="margin: 0px;" onload = "return b()">
+    <div style="width: 100vw; height: 100vh; background: silver; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: clamp(1em + 1vh, 1em, 1em);">
+        <div style="width: 60vw; height: 100vh; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center">
+            <p style="margin-bottom: 0px">Conversor de Formato de Data</p>
+            <p style="margin-bottom: 0px; font-size: clamp(0.5em + 0.2vh, 1em + 0.1vh, 0.5em);">Insira uma data BR (dd/mm/aaaa) ou ISO(aaaa-mm-dd)</p>
+            
+            <p style="margin-bottom: 0px; ">Data</p>
+            <input type="text" id="data"style="width: 200px; height: clamp(1em + 1vh, 1em + 0.5vh, 1em); margin-bottom: 5px; text-align: center;">
+            <input type="button" value="Inserir" style="width:210px; height: clamp(1em, 1.5em + 2.5vh, 2em + 0.5vh);"onclick="return formatoDaData()">
+            
+            <!--<input type="button" id="a"value="inserir data atual" style="width: 210px; height: clamp(1em + 2vh, 1em + 0.5vh,1em);" onclick="return newDate()"><br>-->
+            
+            <p style="margin-bottom: 0px; ">Formato</p>
+            <input type="text" id="formato" style="width: 200px; height: clamp(1em + 1vh, 1em + 0.5vh, 1em); margin-bottom: 5px; text-align: center;">
+            <input type="button" value="Alterar formato" style="width: 210px; height: clamp(1em, 1.5em + 2.5vh, 2em + 0.5vh);" onclick="return alteraFormato()">
+                
+        </div>
+    </div>
+
+    <!--<text id="newDate"> Clique no botão ao lado pra exibir a data atual. </text>
+    <input type="button" name="button" id="btn" value="Data Atual" onclick="return newDate()">--> 
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Formato BR e ISO</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <script>
+        let date = "", format = "" ;      
+        function alteradorFormato(){    
+            date = document.getElementById("date").value
+            if(date==""){
+                format = "No date entered"
+            }else if(date[2]=="/" && date[5]=="/"){
+                format = "ISO"
+                date = date.split("/").reverse().join("-")
+            }else if(date[4]=="-" && date[7]=="-"){
+                format = "BR"
+                date = date.split("-").reverse().join("/")
+            }else{
+                format = "Date incorrect"
+            }
+            document.getElementById("formato").innerHTML = "Format: " + format
+            document.getElementById("date").value = date
+        }       
+    </script>
+</head>
+<body>  
+  <div>
+        
+            <h1>Date Format Conversor</h1>
+            <p>Enter BR (dd/mm/aaaa) or ISO(aaaa-mm-dd) date.</p> 
+            <p>Date:<input type="text" id="date"></p>           
+            <p id="formato">Format: No date entered</p>
+            <input type="button" value="Alterate format" onclick="return alteradorFormato()">    
+     
+        
+    </div>
+</body>
+</html>

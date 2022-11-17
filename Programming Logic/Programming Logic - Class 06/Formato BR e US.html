@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Formato BR e US</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+
+    <script>
+
+        function formatoUS()
+        {
+            let databr = document.getElementById("data").value
+
+            let dtSeparada = databr.split("/")
+
+            let dataus = "";
+
+            //dataus = dtSeparada[2] + "-" + dtSeparada[1] + "-" + dtSeparada[0];
+            
+            for(var i = 2; i >= 0; i--){
+                dataus = dataus + dtSeparada[i];
+                if(i > 0){
+                    dataus = dataus + "-"
+                }
+            }
+            document.getElementById("data").value = dataus    
+            document.getElementById("btnUS").hidden = true;
+            document.getElementById("btnBR").hidden = false;
+
+            document.getElementById("msg1").innerHTML = "Digite uma data no formato US(aaaa-mm-dd)"
+        }
+
+        function formatoBR(){
+            let dataus = document.getElementById("data").value
+
+            let dtSeparada = dataus.split("-")
+
+            let databr = "";
+
+            //databr = dtSeparada[2] + "-" + dtSeparada[1] + "-" + dtSeparada[0];
+            
+            for(var i = 2; i >= 0; i--){
+                databr = databr + dtSeparada[i];
+                if(i > 0){
+                    databr = databr + "/"
+                }
+            }
+            document.getElementById("data").value = databr
+            document.getElementById("btnUS").hidden = false
+            document.getElementById("btnBR").hidden = true
+
+            document.getElementById("msg1").innerHTML = "Digite uma data no formato BR(dd/mm/aaaa)"
+        }
+
+        function esconder(){         
+            document.getElementById("btnBR").hidden = true
+        }
+
+    </script>
+
+</head>
+<body onload="return esconder()">
+    <input type="text" id="data"><text id="msg1"> Digite uma data no formato BR(dd/mm/aaaa)</text><br>
+    <input type="button" id="btnUS" value="Obter formato US" onclick="return formatoUS()">
+    <input type="button" id="btnBR" value="Obter formato BR" onclick="return formatoBR()">
+ 
+</body>
+</html>

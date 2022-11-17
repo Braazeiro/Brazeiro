@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Age Calculator</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="main.css">
+    <script src='main.js'></script>
+    <script>    
+        function checkFormat(date){
+            
+            let format=""
+
+            if(date[2] == "/" && date[5] == "/"){
+                format = "BR"
+                //document.getElementById("birthFormat").innerHTML = format
+            }
+            else if(date[4] == "-" && date[7] == "-"){
+                format = "ISO"
+            }
+            else if(date == ""){
+                format = "No date entered"
+            }
+            else{
+                format = "Incorrect date"
+            }
+            return format
+        }
+        function dateSplit(dateFormat, date){
+            
+            let finalDate=""
+
+            if(dateFormat == "BR"){       
+                finalDate = date.split("/")
+            }
+            if(dateFormat == "ISO"){        
+                finalDate = (date.split("-")).reverse()
+            }
+            return finalDate
+        }
+        function calculator(birthDateFormat, currentDateFormat, birthDateSplit, currentDateSplit){     
+            
+            let age = 0
+
+            anoAtual = currentDateSplit[2]
+            mesAtual = currentDateSplit[1]
+            diaAtual = currentDateSplit[0]
+
+            anoNascimento = birthDateSplit[2]
+            mesNascimento = birthDateSplit[1]
+            diaNascimento = birthDateSplit[0]   
+
+            age = anoAtual - anoNascimento
+
+            if(mesAtual<mesNascimento){
+                age-=1
+            }
+            if(mesAtual==mesNascimento && diaAtual<diaNascimento){
+                age-=1
+            }
+            return age
+        }
+        function main(){
+            let birthDate = document.getElementById("birthDate").value 
+            let currentDate = document.getElementById("currentDate").value
+            let birthDateFormat = checkFormat(birthDate)
+            let currentDateFormat = checkFormat(currentDate)
+            let birthDateSplit = dateSplit(checkFormat(birthDate), birthDate)
+            let currentDateSplit = dateSplit(checkFormat(currentDate), currentDate)     
+            let age = calculator(birthDateFormat, currentDateFormat, birthDateSplit, currentDateSplit)
+
+            //document.getElementById("birthFormat").innerHTML = birthDateFormat 
+            //document.getElementById("currentFormat").innerHTML = currentDateFormat
+            //document.getElementById("birthSplit").innerHTML = birthDateSplit
+            //document.getElementById("currentSplit").innerHTML = currentDateSplit
+
+            if(age>=0){
+                document.getElementById("age").innerHTML = age + " years old"
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Age Calculator</h1>
+      
+            <input type="date" a >
+            <input type="date" title="Birth Date" id="birthDate" value="ne">               
+            <input type="date"  title="Current Date" id="currentDate">              
+            <input type="button" value="Age" id="a"style="width: 208px; height: clamp(1em, 1.5em + 2.5vh, 2em + 0.5vh);" onclick="return main()">
+            <p id="age">No date entered</p>
+        </div>    
+    </div>     
+</body>
+</html> 
+
+<!--if(splitCurrentDate[1] > splitBirthDate[1]){
+    document.getElementById("age").value = age
+}
+else if(splitCurrentDate[1] < splitBirthDate[1]){
+    age = age - 1
+    document.getElementById("age").value = age
+}
+else{
+    if(splitCurrentDate[0] > splitBirthDate[0]){
+        document.getElementById("age").value = age
+    }
+    else if (splitCurrentDate[0] < splitBirthDate[0]){
+        age = age - 1
+        document.getElementById("age").value = age
+    }
+    else{
+        document.getElementById("age").value = age
+        
+    }
+}-->
